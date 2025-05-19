@@ -16,6 +16,10 @@ A simple and intuitive Todo application built with Angular and Material Design. 
 *   **Responsive Design:** Works on various screen sizes.
 *   **Local Storage:** Todos are saved in the browser's local storage.
 
+##Screenshots
+
+![Screenshot](media/Day Mode.png)
+![Screenshot](media/Night Mode.png)
 
 ## Getting Started
 
