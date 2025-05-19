@@ -18,8 +18,8 @@ A simple and intuitive Todo application built with Angular and Material Design. 
 
 ##Screenshots
 
-![Screenshot](media/Day Mode.png)
-![Screenshot](media/Night Mode.png)
+![Day Mode](media/Day-Mode.png)
+![Night Mode](media/Night-Mode.png)
 
 ## Getting Started
 
