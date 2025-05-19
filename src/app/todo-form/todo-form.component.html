@@ -1,0 +1,54 @@
+<form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="todo-form">
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="title-field">
+      <mat-label>Add a new task</mat-label>
+      <input 
+        matInput 
+        formControlName="title" 
+        placeholder="What needs to be done?">
+      <mat-icon matSuffix>assignment</mat-icon>
+      <mat-error *ngIf="todoForm.controls.title.invalid">Title is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        @for (option of priorityOptions; track option.value) {
+          <mat-option [value]="option.value" [style.color]="option.color">
+            {{ option.label }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Due Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dueDate">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <input 
+        type="text" 
+        matInput 
+        formControlName="category"
+        [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (category of filteredCategories$ | async; track category) {
+          <mat-option [value]="category">{{category}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <button 
+    mat-raised-button 
+    color="primary" 
+    type="submit" 
+    [disabled]="todoForm.invalid">
+    <mat-icon>add</mat-icon>
+    Add Task
+  </button>
+</form>

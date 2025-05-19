@@ -1,0 +1,205 @@
+.todo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+  
+  .search-box {
+    flex: 1 1 300px;
+    
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  .filter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+}
+
+.todo-list-card {
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    color: #888;
+    
+    mat-icon {
+      font-size: 48px;
+      height: 48px;
+      width: 48px;
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.todo-list {
+  .todo-item-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    
+    .drag-handle {
+      cursor: move;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      opacity: 0.5;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+    .todo-item {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08); 
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      background-color: var(--card-background); 
+
+      &:hover {
+        transform: translateY(-2px); 
+        box-shadow: 0 4px 8px rgba(0,0,0,0.12); 
+      }
+      
+      &.completed {
+        background-color: color-mix(in srgb, var(--card-background) 90%, #e0e0e0); 
+        opacity: 0.7; 
+        
+        .todo-main {
+          mat-checkbox {
+            text-decoration: line-through;
+            color: var(--secondary-text);
+          }
+        }
+      }
+      
+      .todo-content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        
+        .todo-main {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+          
+          mat-checkbox {
+            font-weight: 500;
+          }
+          
+          .todo-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            
+            .priority-badge, .due-date-badge, .category-badge {
+              display: inline-flex;
+              align-items: center;
+              gap: 4px;
+              padding: 4px 8px;
+              border-radius: 16px;
+              font-size: 12px;
+              font-weight: 500;
+              
+              mat-icon {
+                font-size: 14px;
+                height: 14px;
+                width: 14px;
+              }
+            }
+            
+            .priority-badge {
+              color: white;
+            }
+            
+            .due-date-badge {
+              background-color: #e0e0e0;
+              
+              &.overdue {
+                background-color: #ffcdd2;
+                color: #c62828;
+              }
+              
+              &.today {
+                background-color: #bbdefb;
+                color: #0d47a1;
+              }
+            }
+            
+            .category-badge {
+              background-color: #e1f5fe;
+              color: #0277bd;
+            }
+          }
+        }
+        
+        .todo-meta {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          
+          .todo-date {
+            font-size: 12px;
+            color: #888;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  background-color: var(--card-background);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.todo-list.cdk-drop-list-dragging .todo-item-container:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+  .todo-toolbar {
+    flex-direction: column;
+    
+    .filter-actions {
+      justify-content: center;
+    }
+  }
+  
+  .todo-item {
+    .todo-content {
+      .todo-main {
+        flex-direction: column;
+        align-items: flex-start !important;
+        
+        .todo-badges {
+          margin-left: 32px;
+        }
+      }
+    }
+  }
+}

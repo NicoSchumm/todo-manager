@@ -1,1 +1,105 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+:root {
+  --background-color: #f5f5f5;
+  --card-background: #ffffff;
+  --text-color: rgba(0, 0, 0, 0.87);
+  --secondary-text: rgba(0, 0, 0, 0.54);
+  --divider-color: rgba(0, 0, 0, 0.12);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); 
+  --card-border-color: var(--divider-color);
+}
+
+.dark-theme {
+  --background-color: #303030;
+  --card-background: #424242;
+  --text-color: #ffffff;
+  --secondary-text: rgba(255, 255, 255, 0.7);
+  --divider-color: rgba(255, 255, 255, 0.12);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --card-shadow: 0 3px 7px rgba(0, 0, 0, 0.35); 
+  --card-border-color: var(--divider-color);
+  
+  .mat-mdc-card {
+    background-color: var(--card-background);
+    color: var(--text-color);
+  }
+  
+  .mat-mdc-form-field-focus-overlay {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .todo-item {
+    background-color: var(--card-background) !important;
+    
+    &.completed {
+      background-color: #383838 !important; 
+      opacity: 0.7; 
+    }
+  }
+  
+  .empty-state {
+    color: var(--secondary-text) !important;
+  }
+  
+  .todo-date {
+    color: var(--secondary-text) !important;
+  }
+}
+
+html, body { 
+  height: 100%; 
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.mat-mdc-card {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--card-shadow); 
+  border: 1px solid var(--card-border-color); 
+  overflow: visible !important;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.datepicker-panel {
+  transform: translateY(0) !important;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-card {
+  overflow: visible !important;
+}
+
+.mat-mdc-autocomplete-panel {
+  max-height: 256px !important;
+}
+
+.mat-mdc-list-item {
+  height: auto !important;
+  margin-bottom: 8px !important;
+}
+
+.mdc-list-item__content {
+  width: 100% !important;
+}
+
+.mat-button-toggle-group {
+  border-radius: 4px !important;
+  overflow: hidden !important;
+}

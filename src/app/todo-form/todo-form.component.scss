@@ -1,0 +1,60 @@
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-start;
+    width: 100%;
+    
+    .title-field {
+      flex: 1 1 300px;
+      min-width: 300px;
+    }
+    
+    mat-form-field {
+      flex: 1 1 200px;
+      min-width: 180px;
+    }
+  }
+  
+  button {
+    align-self: flex-end;
+    margin-top: 8px;
+    height: 42px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 768px) {
+  .todo-form {
+    padding: 16px;
+    
+    .form-row {
+      flex-direction: column;
+      gap: 8px;
+      
+      mat-form-field {
+        width: 100%;
+        min-width: 100%;
+      }
+      
+      .title-field {
+        min-width: 100%;
+      }
+    }
+    
+    button {
+      align-self: stretch;
+      margin-top: 16px;
+    }
+  }
+}
