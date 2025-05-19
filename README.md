@@ -28,7 +28,7 @@ A simple and intuitive Todo application built with Angular and Material Design. 
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/NicoSchumm/todo-manager.git
     cd todo-manager
     ```
 2.  **Install dependencies:**
