@@ -35,7 +35,6 @@ export class TodoService {
     return value;
   }
 
-  // Get filtered, sorted todos
   getFilteredTodos(): Observable<Todo[]> {
     return combineLatest([
       this.todosSubject,
@@ -46,7 +45,6 @@ export class TodoService {
       this.categoryFilterSubject
     ]).pipe(
       map(([todos, filter, sortBy, direction, search, category]) => {
-        // First filter by status
         let filteredTodos = todos.filter(todo => {
           if (filter === 'all') return true;
           if (filter === 'active') return !todo.completed;
@@ -54,7 +52,6 @@ export class TodoService {
           return true;
         });
 
-        // Then filter by search text
         if (search && search.trim() !== '') {
           const searchLower = search.toLowerCase();
           filteredTodos = filteredTodos.filter(todo => 
@@ -62,25 +59,21 @@ export class TodoService {
           );
         }
 
-        // Then filter by category
         if (category) {
           filteredTodos = filteredTodos.filter(todo => 
             todo.category === category
           );
         }
 
-        // Then sort
         return this.sortTodos(filteredTodos, sortBy, direction);
       })
     );
   }
 
-  // Get raw todos (unfiltered)
   getTodos(): Observable<Todo[]> {
     return this.todosSubject.asObservable();
   }
 
-  // Get available categories
   getCategories(): Observable<string[]> {
     return this.todosSubject.pipe(
       map(todos => {
@@ -92,7 +85,6 @@ export class TodoService {
     );
   }
 
-  // Sorting function
   private sortTodos(todos: Todo[], sortBy: TodoSortBy, direction: SortDirection): Todo[] {
     return [...todos].sort((a, b) => {
       let comparison = this.compareByProperty(a, b, sortBy);
@@ -118,7 +110,6 @@ export class TodoService {
     }
   }
 
-  // Filter setters
   setFilter(filter: TodoFilter): void {
     this.filterSubject.next(filter);
   }
@@ -139,7 +130,6 @@ export class TodoService {
     this.categoryFilterSubject.next(category);
   }
 
-  // Current filter getters
   getCurrentFilter(): Observable<TodoFilter> {
     return this.filterSubject.asObservable();
   }
@@ -160,7 +150,6 @@ export class TodoService {
     return this.categoryFilterSubject.asObservable();
   }
 
-  // Todo operations
   addTodo(title: string, priority: 'low' | 'medium' | 'high' = 'medium', dueDate: Date | null = null, category: string | null = null): void {
     if (!title.trim()) return;
     

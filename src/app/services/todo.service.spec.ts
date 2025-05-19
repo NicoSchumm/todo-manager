@@ -8,7 +8,6 @@ describe('TodoService', () => {
   let localStorageSetItemSpy: jasmine.Spy;
 
   beforeEach(() => {
-    // Mock localStorage
     localStorageGetItemSpy = spyOn(localStorage, 'getItem').and.returnValue(null);
     localStorageSetItemSpy = spyOn(localStorage, 'setItem');
 
@@ -33,7 +32,7 @@ describe('TodoService', () => {
     
     localStorageGetItemSpy.and.returnValue(JSON.stringify(mockTodos));
     
-    // Re-create service to trigger constructor
+
     service = TestBed.inject(TodoService);
     
     service.getTodos().subscribe(todos => {
@@ -112,14 +111,12 @@ describe('TodoService', () => {
 
     service.toggleComplete(todoId!);
     
-    // Test 'all' filter
     service.setFilter('all');
     service.getFilteredTodos().subscribe(todos => {
       expect(todos.length).toBe(2);
       done();
     });
     
-    // Test 'active' filter
     service.setFilter('active');
     service.getFilteredTodos().subscribe(todos => {
       expect(todos.length).toBe(1);
@@ -127,7 +124,6 @@ describe('TodoService', () => {
       done();
     });
     
-    // Test 'completed' filter
     service.setFilter('completed');
     service.getFilteredTodos().subscribe(todos => {
       expect(todos.length).toBe(1);
@@ -140,7 +136,6 @@ describe('TodoService', () => {
     service.addTodo('B Todo', 'low');
     service.addTodo('A Todo', 'high');
     
-    // Test sort by title, ascending
     service.setSortBy('title');
     service.setSortDirection('asc');
     
@@ -150,7 +145,6 @@ describe('TodoService', () => {
       done();
     });
     
-    // Test sort by priority, descending
     service.setSortBy('priority');
     service.setSortDirection('desc');
     

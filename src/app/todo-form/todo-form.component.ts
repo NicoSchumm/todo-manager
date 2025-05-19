@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TodoService } from '../services/todo.service';
 import { Observable, map, startWith, of, switchMap } from 'rxjs';
 
@@ -55,14 +56,11 @@ export class TodoFormComponent {
     
     this.filteredCategories$ = this.todoForm.controls.category.valueChanges.pipe(
       startWith(''),
-      switchMap(value => this.filterCategories(value))
+      switchMap(value => this._filterCategories(value))
     );
   }
-
-  private filterCategories(value: string | null): Observable<string[]> {
-    if (!value) {
-      return of([]);
-    }
+  private _filterCategories(value: string | null): Observable<string[]> {
+    if (!value) return of([]); 
     
     const filterValue = value.toLowerCase();
     return this.categories$.pipe(
@@ -73,28 +71,22 @@ export class TodoFormComponent {
   }
 
   addTodo(): void {
-    if (!this.todoForm.valid) {
-      return;
+    if (this.todoForm.valid) {
+      const { title, priority, dueDate, category } = this.todoForm.value;
+      
+      this.todoService.addTodo(
+        title as string, 
+        priority as 'low' | 'medium' | 'high', 
+        dueDate as Date | null,
+        category as string | null
+      );
+      
+      this.todoForm.reset({
+        title: '',
+        priority: 'medium',
+        dueDate: null,
+        category: null
+      });
     }
-    
-    const { title, priority, dueDate, category } = this.todoForm.value;
-    
-    this.todoService.addTodo(
-      title as string, 
-      priority as 'low' | 'medium' | 'high', 
-      dueDate as Date | null,
-      category as string | null
-    );
-    
-    this.resetForm();
-  }
-
-  private resetForm(): void {
-    this.todoForm.reset({
-      title: '',
-      priority: 'medium',
-      dueDate: null,
-      category: null
-    });
   }
 }

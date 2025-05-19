@@ -18,12 +18,121 @@
   --secondary-text: rgba(255, 255, 255, 0.7);
   --divider-color: rgba(255, 255, 255, 0.12);
   --shadow-color: rgba(0, 0, 0, 0.3);
-  --card-shadow: 0 3px 7px rgba(0, 0, 0, 0.35); 
+  --card-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
   --card-border-color: var(--divider-color);
-  
+
+  & {
+    color: var(--text-color);
+  }
+
   .mat-mdc-card {
     background-color: var(--card-background);
     color: var(--text-color);
+  }
+
+  .mat-mdc-card-subtitle,
+  .mat-card-subtitle {
+    color: var(--secondary-text);
+  }
+
+  .mat-mdc-form-field {
+    .mat-mdc-input-element {
+      color: var(--text-color);
+      &::placeholder {
+        color: var(--secondary-text);
+      }
+    }
+
+    .mat-mdc-label,
+    .mdc-floating-label {
+      color: var(--secondary-text);
+    }
+    
+    &.mat-focused .mat-mdc-label,
+    &.mat-form-field-should-float .mat-mdc-label,
+    &.mat-focused .mdc-floating-label {
+      color: var(--text-color); 
+    }
+
+    .mat-mdc-select-value-text {
+      color: var(--text-color);
+    }
+    
+    .mat-mdc-select-arrow svg {
+      fill: var(--secondary-text);
+    }
+
+    .mat-mdc-form-field-hint,
+    .mat-mdc-form-field-error {
+      color: var(--secondary-text);
+    }
+  }
+
+  .mat-mdc-select-panel,
+  .mat-mdc-autocomplete-panel {
+    background-color: var(--card-background);
+
+    .mat-mdc-option .mdc-list-item__primary-text {
+      color: var(--text-color);
+    }
+    .mat-mdc-option.mat-mdc-option-active .mdc-list-item__primary-text,
+    .mat-mdc-option:hover .mdc-list-item__primary-text,
+    .mat-mdc-option.mdc-list-item--selected .mdc-list-item__primary-text {
+      color: var(--text-color);
+    }
+     .mat-mdc-option.mat-mdc-option-active:not(.mat-mdc-option-disabled),
+     .mat-mdc-option:hover:not(.mat-mdc-option-disabled),
+     .mat-mdc-option.mdc-list-item--selected:not(.mat-mdc-option-disabled) {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .mat-datepicker-content {
+    background-color: var(--card-background);
+    color: var(--text-color);
+
+    .mat-calendar-body-cell-content,
+    .mat-calendar-body-label,
+    .mat-calendar-table-header th {
+      color: var(--text-color);
+    }
+    .mat-calendar-body-disabled > .mat-calendar-body-cell-content {
+      color: var(--secondary-text);
+    }
+    .mat-datepicker-navigation-button .mat-icon,
+    .mat-datepicker-period-button .mdc-button__label {
+        color: var(--text-color);
+    }
+  }
+  .mat-datepicker-toggle .mat-icon {
+      color: var(--text-color);
+  }
+
+  .mat-mdc-button:not([class*="mat-primary"]):not([class*="mat-accent"]):not([class*="mat-warn"]) .mdc-button__label,
+  .mat-mdc-stroked-button:not([class*="mat-primary"]):not([class*="mat-accent"]):not([class*="mat-warn"]) .mdc-button__label,
+  .mat-mdc-flat-button:not([class*="mat-primary"]):not([class*="mat-accent"]):not([class*="mat-warn"]) .mdc-button__label {
+    color: var(--text-color);
+  }
+  .mat-mdc-icon-button {
+    color: var(--text-color);
+    .mat-icon {
+        color: var(--text-color);
+    }
+  }
+
+  .mat-mdc-chip, .mat-mdc-standard-chip {
+    background-color: rgba(255, 255, 255, 0.12);
+    .mdc-evolution-chip__text-label {
+        color: var(--text-color);
+    }
+    .mat-mdc-chip-remove-icon svg,
+    .mat-mdc-chip-trailing-icon svg {
+        fill: var(--secondary-text);
+    }
+     &:hover .mat-mdc-chip-remove-icon svg,
+     &:hover .mat-mdc-chip-trailing-icon svg {
+        fill: var(--text-color);
+    }
   }
   
   .mat-mdc-form-field-focus-overlay {
@@ -37,6 +146,28 @@
       background-color: #383838 !important; 
       opacity: 0.7; 
     }
+
+    .todo-badges {
+      .due-date-badge {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: var(--text-color);
+
+        &.overdue {
+          background-color: rgba(244, 67, 54, 0.5);
+          color: var(--text-color);
+        }
+
+        &.today {
+          background-color: rgba(33, 150, 243, 0.5);
+          color: var(--text-color);
+        }
+      }
+
+      .category-badge {
+        background-color: rgba(0, 188, 212, 0.5);
+        color: var(--text-color);
+      }
+    }
   }
   
   .empty-state {
@@ -46,6 +177,144 @@
   .todo-date {
     color: var(--secondary-text) !important;
   }
+
+  .mat-button-toggle-group {
+    .mat-button-toggle-button:not(.mat-button-toggle-checked) {
+      color: var(--secondary-text);
+      .mat-icon {
+        color: var(--secondary-text);
+      }
+    }
+  }
+
+  .mat-menu-panel {
+    background-color: var(--card-background);
+  }
+
+  .mat-menu-item {
+    color: var(--text-color);
+    &:hover:not([disabled]),
+    &:focus:not([disabled]) {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .mat-icon {
+      color: var(--secondary-text);
+    }
+  }
+  .mat-menu-item[disabled] {
+    color: rgba(255, 255, 255, 0.3);
+    .mat-icon {
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .mat-checkbox-label {
+    color: var(--text-color);
+  }
+
+  .mat-slide-toggle-bar {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgba(var(--primary-color-rgb, 63, 81, 181), 0.5);
+  }
+  .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: rgb(var(--primary-color-rgb, 63, 81, 181));
+  }
+  .mat-slide-toggle-content {
+    color: var(--text-color);
+  }
+
+  // Form labels, headings, and inputs (more specific selectors)
+  .mat-mdc-form-field-label-wrapper .mat-mdc-form-field-label,
+  h1, h2, h3, h4, h5, h6,
+  .mat-mdc-input-element,
+  .mat-mdc-select-value,
+  .mat-mdc-select-placeholder,
+  .mdc-floating-label,
+  .mdc-text-field__input::placeholder {
+    color: var(--text-color) !important;
+  }
+
+  // Buttons and button text
+  .mat-mdc-button,
+  .mat-mdc-raised-button,
+  .mat-mdc-unelevated-button,
+  .mat-mdc-outlined-button {
+    color: var(--text-color) !important;
+    
+    .mdc-button__label {
+      color: var(--text-color) !important;
+    }
+    
+    mat-icon {
+      color: var(--text-color) !important;
+    }
+  }
+  
+  // Task names and content text
+  .todo-title, 
+  .mdc-list-item__primary-text,
+  .todo-content,
+  .mat-mdc-checkbox .mdc-label,
+  .mdc-checkbox__label {
+    color: var(--text-color) !important;
+  }
+  
+  // Filter toggle buttons 
+  .mat-button-toggle-group {
+    background-color: var(--card-background) !important;
+    border-color: var(--divider-color) !important;
+    
+    .mat-button-toggle {
+      background-color: var(--card-background) !important;
+      color: var(--text-color) !important;
+      
+      &:not(.mat-button-toggle-checked) {
+        background-color: var(--card-background) !important;
+        
+        .mat-button-toggle-label-content {
+          color: var(--secondary-text) !important;
+        }
+      }
+      
+      &.mat-button-toggle-checked {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        
+        .mat-button-toggle-label-content {
+          color: var(--text-color) !important;
+        }
+      }
+    }
+    
+    .mat-button-toggle-button {
+      color: var(--text-color) !important;
+    }
+    
+    .mat-button-toggle-label-content {
+      color: var(--text-color) !important;
+    }
+  }
+  
+  // Add task button and text
+  button.add-task-button,
+  .add-task-text {
+    color: var(--text-color) !important;
+  }
+  
+  // Force all text elements to use the theme color
+  span, p, div, a, label {
+    color: var(--text-color);
+  }
+}
+
+// Add this outside the .dark-theme block to handle the toggle between themes
+.mat-button-toggle-group {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mat-button-toggle {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html, body { 
